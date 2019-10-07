@@ -1,0 +1,6 @@
+[submodule "shush-format"]
+	path = shush-format
+	url = https://github.com/Shushpancheak/shush-format.git
+[submodule "googletest"]
+	path = googletest
+	url = https://github.com/Google/googletest.git

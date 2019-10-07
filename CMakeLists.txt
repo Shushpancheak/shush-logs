@@ -3,20 +3,18 @@ cmake_minimum_required(VERSION 3.11)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(include src)
-
 project (
-  "PROJECT_NAME"
+  "shush-logs"
   VERSION 1.0.0
-  DESCRIPTION ""
+  DESCRIPTION "A simple logger."
 )
 set (
   SOURCES
-  src/$$$.cpp
+  src/shush-logs.cpp
 )
 set (
   PUBLIC_HEADERS
-  include/$$$.hpp
+  include/shush-logs.hpp
 )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -41,6 +39,7 @@ set_target_properties (
   VERSION         ${PROJECT_VERSION}
   PUBLIC_HEADER   ${PUBLIC_HEADERS}
 )
+
 target_include_directories(${LIBRARY_NAME} PUBLIC  include)
 target_include_directories(${LIBRARY_NAME} PRIVATE src)
 
@@ -57,7 +56,7 @@ install (
   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig
 )
 
-set(BUILD_TESTS OFF CACHE BOOL "Build tests")
+set(BUILD_TESTS ON CACHE BOOL "Build tests")
 if (BUILD_TESTS)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -82,4 +81,14 @@ add_executable(${UNIT_TESTS_NAME} ${UNIT_TESTS_FILE})
 target_link_libraries(${UNIT_TESTS_NAME} gtest_main ${LIBRARY_NAME})
 add_test(${UNIT_TESTS_NAME} ${UNIT_TESTS_NAME})
 
+# Forcing for not building tests later.
+set(BUILD_TESTS OFF CACHE BOOL "Build tests" FORCE)
+
 endif() # BUILD_TESTS
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - -  - - - OTHER DEPENDENCIES - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+add_subdirectory(shush-format)
+target_link_libraries(${LIBRARY_NAME} shush-format)
