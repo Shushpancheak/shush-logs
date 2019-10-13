@@ -56,7 +56,7 @@ install (
   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig
 )
 
-set(BUILD_TESTS ON CACHE BOOL "Build tests")
+set(BUILD_TESTS OFF CACHE BOOL "Build tests" FORCE)
 if (BUILD_TESTS)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

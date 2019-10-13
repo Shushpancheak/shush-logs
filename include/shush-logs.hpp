@@ -23,7 +23,7 @@ inline const char        LOG_LEVEL_DBG          = 1;
 inline const char        LOG_LEVEL_LOG          = 0;
 inline const char        DEFAULT_LOGGING_LEVEL  = 1;
 
-inline const std::string HELLO_STRING           = "STARTED LOGGING WITH SHUSH::LOGS HERE!";
+inline const std::string HELLO_STRING           = "STARTED LOGGING {project-name}";
 
 /**
 * @brief A simple noexcept logger.
@@ -37,7 +37,12 @@ inline const std::string HELLO_STRING           = "STARTED LOGGING WITH SHUSH::L
 class Logger {
 public:
   /**
-   * @brief Creates the logger and starts logging by creating the .log file.
+   * @brief Creates the logger and starts logging by creating (if not present)
+   * the .log file.
+   *
+   * @note Throughout all work of a program there should be only one file
+   * opened for writing. So, if logging started previously, your file_names
+   * won't have any effect and logging will proceed in previously opened file.
    *
    * @param[in] project_name   the name of a project, which by default
    *                           will be in file name.
@@ -123,9 +128,9 @@ private:
   std::map<std::string, std::string> var_map_;
   std::string project_name_;
   char log_level_;
-  std::string file_name_;
-  std::string directory_;
-  std::string full_path_;
+  static std::string file_name_;
+  static std::string directory_;
+  static std::string full_path_;
 
   std::string line_template_;
   std::string log_prefix_;
@@ -133,7 +138,7 @@ private:
   std::string dbg_prefix_;
   std::string dbg_suffix_;
 
-  std::ofstream file_;
+  static std::ofstream file_;
 };
 
 }

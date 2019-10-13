@@ -9,18 +9,21 @@ Logger(std::string project_name,
     : var_map_(std::move(var_map))
     , project_name_(std::move(project_name))
     , log_level_(logging_level)
-    , file_name_(std::move(logs_file_name))
-    , directory_(std::move(logs_directory))
     , line_template_(DEFAULT_LINE_TEMPLATE)
     , log_prefix_(DEFAULT_LOG_PREFIX_LOG)
     , log_suffix_(DEFAULT_LOG_SUFFIX_LOG)
     , dbg_prefix_(DEFAULT_LOG_PREFIX_DBG)
     , dbg_suffix_(DEFAULT_LOG_SUFFIX_DBG) {
   var_map_["project_name"] = project_name_;
-  full_path_ = format::FormatString(directory_ + file_name_, var_map_);
 
-  std::filesystem::create_directories(directory_);
-  file_.open(full_path_, std::ios::app | std::ios::out);
+  if (!file_.is_open()) {
+    file_name_ = std::move(logs_file_name);
+    directory_ = std::move(logs_directory);
+    full_path_ = format::FormatString(directory_ + file_name_, var_map_);
+    std::filesystem::create_directories(directory_);
+    file_.open(full_path_, std::ios::app | std::ios::out);
+  }
+
   Log(HELLO_STRING);
 }
 
