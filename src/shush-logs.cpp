@@ -24,7 +24,7 @@ Logger(std::string project_name,
     file_.open(full_path_, std::ios::app | std::ios::out);
   }
 
-  Log(HELLO_STRING);
+  Log(format::FormatString(HELLO_STRING, var_map_));
 }
 
 shush::logs::Logger::~Logger() {
@@ -37,7 +37,8 @@ void shush::logs::Logger::SetFileName(const std::string& file_name) noexcept {
   file_name_ = file_name;
   full_path_ = format::FormatString(directory_ + file_name, var_map_);
   file_.open(full_path_, std::ios::app);
-  Log(HELLO_STRING);
+
+  Log(format::FormatString(HELLO_STRING, var_map_));
 }
 
 void shush::logs::Logger::SetDirectory(const std::string& directory) noexcept {
@@ -45,7 +46,8 @@ void shush::logs::Logger::SetDirectory(const std::string& directory) noexcept {
   std::filesystem::create_directories(directory_);
   full_path_ = format::FormatString(directory + file_name_, var_map_);
   file_.open(full_path_, std::ios::app);
-  Log(HELLO_STRING);
+
+  Log(format::FormatString(HELLO_STRING, var_map_));
 }
 
 void shush::logs::Logger::SetLogLevel(char log_level) noexcept {
