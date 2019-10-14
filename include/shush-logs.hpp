@@ -25,7 +25,7 @@ inline const char        LOG_LEVEL_DBG          = 1;
 inline const char        LOG_LEVEL_LOG          = 0;
 inline const char        DEFAULT_LOGGING_LEVEL  = 1;
 
-inline const std::string HELLO_STRING           = "STARTED LOGGING {project-name}";
+inline const std::string HELLO_STRING           = "STARTED LOGGING {project_name}";
 
 /**
 * @brief A simple noexcept logger.

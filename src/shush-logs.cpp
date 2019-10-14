@@ -14,6 +14,7 @@ Logger(std::string project_name,
     , log_suffix_(DEFAULT_LOG_SUFFIX_LOG)
     , dbg_prefix_(DEFAULT_LOG_PREFIX_DBG)
     , dbg_suffix_(DEFAULT_LOG_SUFFIX_DBG) {
+  //TODO if such project name was previously used, increment its number.
   var_map_["project_name"] = project_name_;
 
   if (!file_.is_open()) {
