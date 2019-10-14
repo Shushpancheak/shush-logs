@@ -151,3 +151,8 @@ void shush::logs::Logger::Dbg(const char* const str) noexcept {
     WriteFormattedTemplate(LOG_LEVEL_DBG);
   }
 }
+
+std::string shush::logs::Logger::file_name_;
+std::string shush::logs::Logger::directory_;
+std::string shush::logs::Logger::full_path_;
+std::ofstream shush::logs::Logger::file_;

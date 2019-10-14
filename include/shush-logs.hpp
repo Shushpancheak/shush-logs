@@ -11,9 +11,11 @@ namespace shush {
 namespace logs {
 inline const std::string DEFAULT_DIRECTORY      = "logs/";
 inline const std::string DEFAULT_FILE_NAME      = "{project_name}-{date}.log";
-inline const std::string DEFAULT_LOG_PREFIX_LOG = "{date} | LOG: ";
+inline const std::string DEFAULT_LOG_PREFIX_LOG =
+                                            "{date} | {project_name} | LOG: ";
 inline const std::string DEFAULT_LOG_SUFFIX_LOG = "\n";
-inline const std::string DEFAULT_LOG_PREFIX_DBG = "{date} | DBG: ";
+inline const std::string DEFAULT_LOG_PREFIX_DBG =
+                                            "{date} | {project_name} | DBG: ";
 inline const std::string DEFAULT_LOG_SUFFIX_DBG = "\n";
 inline const std::string DEFAULT_LINE_TEMPLATE  = "{prefix}{LOG}{suffix}";
 
